@@ -1,26 +1,310 @@
+@import url("https://www.nerdfonts.com/assets/css/webfont.css");
+
 @import "tailwindcss";
+@import "@catppuccin/tailwindcss/mocha.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "@catppuccin/palette/css/catppuccin.css";
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@keyframes background-animation {
+  0% {
+    background-position: 0 0;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  100% {
+    background-position: 10rem 10rem;
   }
 }
 
+@keyframes crt-message-animation {
+  0% {
+    background-position-y: 0;
+  }
+
+  50% {
+    background-position-y: 4px;
+    backdrop-filter: brightness(90%);
+  }
+
+  100% {
+    background-position-y: 8px;
+  }
+}
+
+@keyframes crt-flicker-animation {
+  0% {
+    opacity: 100%;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes marquee-animation {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+*::selection {
+  background-color: var(--ctp-mocha-text);
+  color: var(--ctp-mocha-base);
+}
+
+header *::selection,
+footer *::selection {
+  background-color: var(--ctp-mocha-base);
+  color: var(--ctp-mocha-text);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--ctp-mocha-base);
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 10rem 10rem;
+  background-repeat: repeat;
+  animation: background-animation 5s linear infinite;
+  color: var(--ctp-mocha-text);
+}
+
+h1,
+h2 {
+  font-family: var(--font-nunito);
+}
+
+p,
+li {
+  font-family: var(--font-jetbrains-mono);
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+header,
+footer {
+  position: relative;
+  background-color: var(--ctp-mocha-text);
+}
+
+header {
+  padding: 3rem 0 1rem 0;
+  margin-bottom: 10rem;
+}
+
+footer {
+  padding: 1rem 0 3rem 0;
+  margin-top: 10rem;
+}
+
+header::before,
+footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 10rem;
+  background-image: url("/svg/waves.svg");
+  background-size: 100% 100%;
+}
+
+header::before {
+  top: 100%;
+  transform: scaleY(-1);
+}
+
+footer::before {
+  top: -10rem;
+}
+
+header h1,
+footer h1,
+footer h2,
+footer p,
+footer a {
+  color: var(--ctp-mocha-base);
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  text-shadow: none;
+  color: var(--ctp-mocha-blue);
+  background-image: linear-gradient(
+    transparent calc(100% - 1px),
+    var(--ctp-mocha-blue) 1px
+  );
+  background-repeat: no-repeat;
+  background-size: 0 100%;
+  transition: 250ms;
+}
+
+a:hover {
+  text-shadow: 0 2px 1rem rgba(0, 0, 0, 0.25);
+  background-size: 100% 100%;
+  transform: translateY(-2px);
+}
+
+a:active {
+  transform: translateY(0);
+}
+
+footer a {
+  background-image: linear-gradient(
+    transparent calc(100% - 1px),
+    var(--ctp-mocha-base) 1px
+  );
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+li {
+  transition: 250ms;
+}
+
+li:hover {
+  padding-left: 0.25rem;
+}
+
+li::marker {
+  color: var(--ctp-mocha-overlay0);
+  transition: 250ms;
+}
+
+li:hover::marker {
+  color: var(--ctp-mocha-text);
+}
+
+.content {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.card {
+  position: relative;
+  background-color: var(--ctp-mocha-base);
+  border-radius: 1rem;
+  border: 1px solid var(--ctp-mocha-text);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  transition: 250ms;
+}
+
+.card:hover {
+  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.5);
+  transform: translateY(-0.25rem);
+}
+
+.marquee {
+  overflow: hidden;
+  color: var(--ctp-mocha-text);
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    white 25%,
+    white 75%,
+    transparent 100%
+  );
+}
+
+.marquee > div {
+  display: flex;
+  gap: 3rem;
+  white-space: nowrap;
+  animation: marquee-animation 10s linear infinite;
+}
+
+.crt-message::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 1rem;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1) 4px, transparent 4px);
+  background-size: 100% 8px;
+  background-repeat: repeat;
+  animation: crt-message-animation 100ms linear infinite;
+  z-index: 1;
+}
+
+.crt-message > * {
+  text-shadow: 0 0 1rem currentColor;
+  animation: crt-flicker-animation 100ms linear infinite;
+}
+
+#mewo {
+  position: absolute;
+  left: 5rem;
+  top: 0;
+  margin-top: -5rem;
+  width: 5rem;
+  aspect-ratio: 1 / 1;
+  transform-origin: bottom left;
+  filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.25));
+  cursor: grab;
+  animation: 250ms;
+}
+
+#mewo:active {
+  cursor: grabbing;
+  top: 0.1rem;
+}
+
+#omor-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("/img/ibuprofen.png");
+  background-size: 100% 100%;
+  z-index: 1024;
+  opacity: 0;
+  transition: opacity 1s linear;
+}
+
+#omor-overlay.visible {
+  opacity: 1;
+}
+
+#small-screen-warning-text {
+  display: none;
+  color: var(--ctp-mocha-red);
+  text-shadow: 2px 2px rgb(128, 64, 64);
+}
+
+@media (max-width: 600px) {
+  .content {
+    width: auto;
+    margin: 0 5%;
+    flex-direction: column;
+  }
+
+  .content > * {
+    width: auto;
+  }
+
+  #small-screen-warning-text {
+    display: block;
+  }
 }
