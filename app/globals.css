@@ -1,8 +1,6 @@
-@import url("https://www.nerdfonts.com/assets/css/webfont.css");
-
 @import "tailwindcss";
-@import "@catppuccin/tailwindcss/mocha.css";
 
+@import "@catppuccin/tailwindcss/mocha.css";
 @import "@catppuccin/palette/css/catppuccin.css";
 
 @keyframes background-animation {
@@ -84,6 +82,7 @@ h2 {
 }
 
 p,
+a,
 li {
   font-family: var(--font-jetbrains-mono);
 }

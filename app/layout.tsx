@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-
 import { JetBrains_Mono, Nunito } from "next/font/google";
 
 import "./globals.css";
 
-import Image from "next/image";
+import { FaDiscord, FaGithub, FaYoutube } from "react-icons/fa";
+import { SiNextdotjs } from "react-icons/si";
 
 const jetBrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -27,14 +27,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${jetBrainsMono.variable} ${nunito.variable}`}>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body
-        className={`${jetBrainsMono.variable} ${nunito.variable} flex flex-col place-content-between min-h-screen`}
-      >
+      <body className=" flex flex-col place-content-between min-h-screen">
+        <div className="hidden">nf-fa-discord nf-fa-github nf-fa-youtube</div>
         <header className="flex flex-col items-center">
           <h1 className="!text-5xl">forgor0x10</h1>
         </header>
@@ -46,32 +45,45 @@ export default function RootLayout({
         {children}
         <footer className="flex flex-col items-center gap-8">
           <div>
-            <h2 className="spacing">Links</h2>
+            <h2>Links</h2>
 
-            <p>
+            <div className="flex flex-col gap-2">
               <a
                 target="_blank"
+                rel="noopener noreferrer"
                 href="https://discord.com/users/954606816820613160"
               >
-                <i className="nf nf-fa-discord mr-2"></i>Discord
+                <FaDiscord className="inline mr-2" />
+                Discord
               </a>
-              <br />
-              <a target="_blank" href="https://github.com/forgor0x10">
-                <i className="nf nf-fa-github mr-2"></i>GitHub
+
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.com/forgor0x10"
+              >
+                <FaGithub className="inline mr-2" />
+                GitHub
               </a>
-              <br />
-              <a target="_blank" href="https://youtube.com/@forgor0x10">
-                <i className="nf nf-fa-youtube mr-2"></i>YouTube
+
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://youtube.com/@forgor0x10"
+              >
+                <FaYoutube className="inline mr-2" />
+                YouTube
               </a>
-            </p>
+            </div>
           </div>
-          <div className="absolute w-32 h-16 right-4 bottom-4">
+
+          <div className="absolute right-4 bottom-4">
             <a
               target="_blank"
               href="https://nextjs.org"
-              className="dark-underline block w-full h-full"
+              className="block w-full h-full"
             >
-              <Image src="/svg/next.svg" alt="Next.js Logo" fill />
+              <SiNextdotjs size="2rem" className="m-1" />
             </a>
           </div>
         </footer>
