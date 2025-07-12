@@ -103,13 +103,13 @@ export function AmenBreakButton() {
       <a href="#" onClick={handleClick}>
         Show me!!
       </a>
-      <audio ref={audioRef} className="rounded-full" />
       {fileName && (
         <p>
           Congratulations!! You got <strong>{fileName}</strong>!!
           {message && <> {message} </>}
         </p>
       )}
+      <audio ref={audioRef} />
     </div>
   );
 }

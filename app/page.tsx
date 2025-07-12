@@ -208,7 +208,7 @@ export default function Home() {
               <h1>/img/bobam.gif</h1>
               <div className="w-3/4 relative aspect-[249/230]">
                 <Image
-                  className="rounded-2xl object-contain"
+                  className="rounded-lg"
                   src="/img/bobam.gif"
                   alt="bobam.gif"
                   fill

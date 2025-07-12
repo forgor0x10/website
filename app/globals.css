@@ -63,7 +63,7 @@ footer *::selection {
 }
 
 body {
-  background-color: var(--ctp-mocha-base);
+  background-color: var(--ctp-mocha-crust);
   background-image: linear-gradient(
       rgba(255, 255, 255, 0.03) 1px,
       transparent 1px
@@ -101,7 +101,7 @@ p {
 header,
 footer {
   position: relative;
-  background-color: var(--ctp-mocha-text);
+  background-color: var(--ctp-mocha-crust);
 }
 
 header {
@@ -134,18 +134,13 @@ footer::before {
   top: -10rem;
 }
 
-header h1,
-footer h1,
-footer h2,
-footer p,
 footer a {
-  color: var(--ctp-mocha-base);
+  color: var(--ctp-mocha-text);
 }
 
 a {
   display: inline-block;
   text-decoration: none;
-  text-shadow: none;
   color: var(--ctp-mocha-blue);
   background-image: linear-gradient(
     transparent calc(100% - 1px),
@@ -157,7 +152,6 @@ a {
 }
 
 a:hover {
-  text-shadow: 0 2px 1rem rgba(0, 0, 0, 0.25);
   background-size: 100% 100%;
   transform: translateY(-2px);
 }
@@ -169,7 +163,7 @@ a:active {
 footer a {
   background-image: linear-gradient(
     transparent calc(100% - 1px),
-    var(--ctp-mocha-base) 1px
+    var(--ctp-mocha-text) 1px
   );
 }
 
@@ -180,10 +174,6 @@ ul {
 
 li {
   transition: 250ms;
-}
-
-li:hover {
-  padding-left: 0.25rem;
 }
 
 li::marker {
@@ -202,16 +192,18 @@ li:hover::marker {
 
 .card {
   position: relative;
-  background-color: var(--ctp-mocha-base);
-  border-radius: 1rem;
-  border: 1px solid var(--ctp-mocha-text);
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(0.1rem);
+  border-radius: 0.5rem;
+  border: 1px solid var(--ctp-mocha-overlay0);
+  box-shadow: none;
   padding: 1rem;
   transition: 250ms;
 }
 
 .card:hover {
-  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(0.3rem);
+  border: 1px solid var(--ctp-mocha-text);
+  box-shadow: 0 0.25rem 0 var(--ctp-mocha-text);
   transform: translateY(-0.25rem);
 }
 
@@ -260,7 +252,6 @@ li:hover::marker {
   width: 5rem;
   aspect-ratio: 1 / 1;
   transform-origin: bottom left;
-  filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.25));
   cursor: grab;
   animation: 250ms;
 }
