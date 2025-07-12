@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-@import "@catppuccin/tailwindcss/mocha.css";
 @import "@catppuccin/palette/css/catppuccin.css";
 
 @keyframes background-animation {
