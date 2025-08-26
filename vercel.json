@@ -5,6 +5,10 @@
     {
       "source": "/",
       "destination": "/api/render?pageName=index"
+    },
+    {
+      "source": "/vistake",
+      "destination": "/api/render?pageName=vistake"
     }
   ]
 }
