@@ -1,12 +1,16 @@
 import { readFile } from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
 
 export default async function handler(req, res) {
   const { pageName } = req.query;
 
-  let data = await readFile(
-    `public/templates/${pageName || "400"}.html`,
-    "utf8"
-  );
+  const filename = fileURLToPath(import.meta.url);
+  const dirname = path.dirname(filename);
+
+  const filePath = path.join(dirname, `../templates/${pageName || "400"}.html`);
+
+  let data = await readFile(filePath, "utf8");
 
   if (pageName === "index") {
     const lastfmParams = {
