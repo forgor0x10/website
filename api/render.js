@@ -3,7 +3,10 @@ import { readFile } from "fs/promises";
 export default async function handler(req, res) {
   const { pageName } = req.query;
 
-  let data = await readFile(`templates/${pageName || "400"}.html`, "utf8");
+  let data = await readFile(
+    `public/templates/${pageName || "400"}.html`,
+    "utf8"
+  );
 
   if (pageName === "index") {
     const lastfmParams = {
