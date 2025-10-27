@@ -33,9 +33,9 @@ export default async function page() {
 
     const project_html = /*html*/ `
       <div>
-        <h3><a class="basic underline" target="_blank" href="${
+        <h2><a class="basic underline" target="_blank" href="${
           project.html_url
-        }">${project.name}</a></h3>
+        }">${project.name}</a></h2>
         <p>${project.description || ""}</p>
       </div>
     `;
