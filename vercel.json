@@ -1,14 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
+  "trailingSlash": true,
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/api/render?pageName=index"
-    },
-    {
-      "source": "/vistake",
-      "destination": "/api/render?pageName=vistake"
+      "source": "/(.*)",
+      "destination": "/api/route?page=$1"
     }
   ]
 }
