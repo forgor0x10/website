@@ -1,6 +1,14 @@
 export default async function page() {
   const projects_list = [
     {
+      name: "brief-cpp",
+      type: "main",
+    },
+    {
+      name: "fcppm",
+      type: "main",
+    },
+    {
       name: "fnboard",
       type: "secondary",
     },
