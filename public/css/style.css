@@ -90,6 +90,10 @@ img.small {
   max-width: 20rem;
 }
 
+img.large {
+  max-width: 60rem;
+}
+
 img.filter-nearest {
   image-rendering: pixelated;
 }
