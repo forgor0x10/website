@@ -6,7 +6,6 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 const pages_dir = path.join(dirname, "../pages");
-const components_dir = path.join(dirname, "../components");
 const file_encoding = "utf-8";
 
 async function file_exists(file_path) {
@@ -56,32 +55,22 @@ export default {
     }
 
     let page_html = await fs.readFile(page_html_path, file_encoding);
-    const page_module = await import(pathToFileURL(page_js_path));
-    const page_entries = await page_module.default();
 
-    for (const [page_entry_key, page_entry_value] of Object.entries(
-      page_entries
-    )) {
-      const pattern = new RegExp(`{${page_entry_key}}`, "g");
-      page_html = page_html.replace(pattern, page_entry_value);
+    if (await file_exists(page_js_path)) {
+      const page_module = await import(pathToFileURL(page_js_path));
+      const page_entries = await page_module.default();
+
+      for (const [page_entry_key, page_entry_value] of Object.entries(
+        page_entries
+      )) {
+        const pattern = new RegExp(`{${page_entry_key}}`, "g");
+        page_html = page_html.replace(pattern, page_entry_value);
+      }
     }
 
     const layout_path = path.join(pages_dir, "layout.html");
     const layout_html = await fs.readFile(layout_path, file_encoding);
-
-    let body = layout_html.replace("{content}", page_html);
-
-    const component_files = await fs.readdir(components_dir);
-
-    for (const component_file of component_files) {
-      const component_name = path.basename(component_file, ".html");
-
-      const component_path = path.join(components_dir, component_file);
-      const component_html = await fs.readFile(component_path, file_encoding);
-
-      const pattern = new RegExp(`{${component_name}}`, "g");
-      body = body.replace(pattern, component_html);
-    }
+    const body = layout_html.replace("{content}", page_html);
 
     return html_response(body);
   },

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>forgor0x10</title>
     <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/tailwind.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,12 +18,16 @@
     />
   </head>
   <body>
-    <div class="main-container">
-      {header}
-      <div class="main">{content}</div>
-      {footer}
-    </div>
+    {content}
 
-    <script src="/js/main.js"></script>
+    <div class="footer-container">
+      <a href="/">Root</a>
+      &#x2022;
+      <a href="/home">Home</a>
+      &#x2022;
+      <a href="/games">Games</a>
+      &#x2022;
+      <a href="/projects">Projects</a>
+    </div>
   </body>
 </html>

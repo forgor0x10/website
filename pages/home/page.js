@@ -20,11 +20,9 @@ export default async function page() {
 
   const last_track_artist = last_track.artist["#text"];
   const last_track_title = last_track.name;
-  const last_track_image = last_track.image.at(-1)["#text"];
 
   return {
     last_track_artist,
     last_track_title,
-    last_track_image,
   };
 }
