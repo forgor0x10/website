@@ -169,6 +169,12 @@ hr::before {
   animation: slide-fade 1s;
 }
 
+.main-container > .buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
 .projects-container {
   display: grid;
   grid-template-columns: repeat(2, 50%);
