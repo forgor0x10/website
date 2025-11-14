@@ -4,7 +4,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/api/route?page=$1"
+      "destination": "/api/render?page=$1"
     }
   ]
 }
