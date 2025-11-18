@@ -5,19 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>forgor0x10</title>
     <link href="/css/style.css" rel="stylesheet" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      rel="stylesheet"
-    />
   </head>
   <body>
-    <div class="header-container">
-      <p>[ <a href="/">Root</a> ]</p>
-      <p>[ <a href="/home">Home</a> ]</p>
-      <p>[ <a href="/games">Games</a> ]</p>
-      <p>[ <a href="/projects">Projects</a> ]</p>
-    </div>
+    <div class="main-container-wrapper">
+      <div class="header text-center">
+        <h1>forgor0x10</h1>
+        <p class="mobile">
+          This website isn't suited for mobile. I mean, you can try...
+        </p>
+      </div>
 
-    {content}
+      <div class="main-container">
+        <div class="left-container">
+          <div class="section">
+            <p class="title">Navigation</p>
+            <div class="content">
+              <p>[ <a href="/">Root</a> ]</p>
+              <p>[ <a href="/sitemap">Sitemap</a> ]</p>
+              <p>[ <a href="/music">Music</a> ]</p>
+            </div>
+          </div>
+
+          <div class="section">
+            <p class="title">Socials</p>
+            <div class="content">
+              <p>
+                [
+                <a target="_blank" href="https://github.com/forgor0x10"
+                  >GitHub</a
+                >
+                ]
+              </p>
+              <p>
+                [
+                <a target="_blank" href="https://youtube.com/@forgor0x10"
+                  >YouTube</a
+                >
+                ]
+              </p>
+              <p>
+                [
+                <a target="_blank" href="https://forgor0x10.itch.io">itch.io</a>
+                ]
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-container">{content}</div>
+      </div>
+    </div>
   </body>
 </html>
