@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" fill="none" stroke="#bfbfbf" stroke-width="10">
+  <circle cx="500" cy="500" r="490" stroke-width="5" stroke-dasharray="50, 25" />
+  <circle cx="500" cy="500" r="450" />
+  <circle cx="500" cy="500" r="300" stroke-width="5" stroke-dasharray="50, 25" />
+  <circle cx="500" cy="500" r="150" />
+
+  <rect x="100" y="100" width="800" height="800" stroke-width="5" />
+  <rect x="250" y="250" width="500" height="500" stroke-width="5" />
+
+  <circle cx="100" cy="100" r="5" />
+  <circle cx="900" cy="100" r="5" />
+  <circle cx="100" cy="900" r="5" />
+  <circle cx="900" cy="900" r="5" />
+
+  <circle cx="250" cy="250" r="5" />
+  <circle cx="750" cy="250" r="5" />
+  <circle cx="250" cy="750" r="5" />
+  <circle cx="750" cy="750" r="5" />
+
+  <line x1="500" y1="50" x2="500" y2="950" stroke-width="5" />
+  <line x1="50" y1="500" x2="950" y2="500" stroke-width="5" />
+</svg>
