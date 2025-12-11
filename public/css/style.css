@@ -1,6 +1,9 @@
 :root {
-  --text: #000000;
-  --base: #ffffff;
+  --text: #ffffff;
+  --subtext: #808080;
+  --surface: #202020;
+  --light: #ffffff20;
+  --base: #000000;
 }
 
 * {
@@ -27,29 +30,16 @@ body {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-inline: auto;
-  padding: 4rem 2rem;
-  max-width: 120ch;
   color: var(--text);
-  background: var(--base);
+  background-color: var(--base);
+  background-image: linear-gradient(
+      to right,
+      var(--surface) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--surface) 1px, transparent 1px);
+  background-size: 8rem 8rem;
   font-family: "Open Sans", sans-serif;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 16rem;
-  height: 16rem;
-  background: url("/svg/logo_bg.svg") center / contain;
-  z-index: -1;
 }
 
 a {
@@ -65,9 +55,11 @@ a {
 a:hover {
   color: var(--base);
   background-size: 100% 100%;
+  cursor: pointer;
 }
 
 a.no-fancy {
+  color: var(--subtext);
   background: none;
 }
 
@@ -75,74 +67,93 @@ a.no-fancy:hover {
   color: var(--text);
 }
 
-img {
-  border-radius: 0.5rem;
-  border: 0.125rem solid var(--text);
-}
-
-img.float-right {
-  float: right;
-}
-
-img.size-16rem {
-  width: 16rem;
-}
-
-audio {
-  border-radius: 0.5rem;
-  border: 0.125rem solid var(--text);
+header,
+footer {
+  position: absolute;
+  width: 100%;
+  max-width: 80rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-around;
 }
 
 header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-size: 1.5rem;
-  line-height: 1.5rem;
-}
-
-header nav {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-}
-
-main {
-  margin-inline: auto;
-  width: 100%;
-  max-width: 80ch;
-}
-
-main h1 {
-  margin-bottom: 1rem;
-  font-weight: 700;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
-main p {
-  margin-block: 1rem;
+  top: 0;
 }
 
 footer {
+  bottom: 0;
+}
+
+header > *,
+footer > * {
+  padding: 1rem;
+  background: var(--base);
+  border: 1px solid var(--surface);
+  border-radius: 1rem;
+  box-shadow: 0 0 2rem 1rem var(--base);
+}
+
+main {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 60rem;
+  margin: auto;
+  background: var(--base);
+  border: 1px solid var(--surface);
+  border-radius: 1rem;
+  box-shadow: 0 0.25rem 1rem var(--light), 0 0 4rem 4rem var(--base);
+}
+
+.main-card > .banner {
+  position: relative;
+  min-height: 8rem;
+  border-bottom: 1px solid var(--surface);
+  margin-bottom: 4rem;
+}
+
+.main-card > .banner::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+  width: 12rem;
+  height: 12rem;
+  background: var(--base) url("/svg/logo.svg") center / 8rem no-repeat;
+  border: 1px solid var(--surface);
+  border-radius: 100%;
+}
+
+.main-card > .body {
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
-  width: 100%;
-  font-size: 1.5rem;
+  padding: 2rem;
 }
 
-main .albums-container {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  gap: 1rem;
+footer > .links-container {
+  display: flex;
+  gap: 0.5rem;
 }
 
-main .albums-container img {
-  width: 100%;
-}
-
-.text-center {
-  text-align: center;
+.light-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at bottom, var(--light), transparent);
+  mix-blend-mode: screen;
+  z-index: 1;
+  pointer-events: none;
 }
