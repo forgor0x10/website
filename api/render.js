@@ -9,7 +9,7 @@ const pagesDir = path.join(dirname, "../pages");
 const fileEncoding = "utf-8";
 
 async function getLastTrack() {
-  let last_track;
+  let lastTrack;
 
   try {
     const responseParams = {
@@ -26,7 +26,7 @@ async function getLastTrack() {
     );
 
     if (!response.ok) {
-      return { last_track };
+      return lastTrack;
     }
 
     const json = await response.json();
@@ -36,15 +36,15 @@ async function getLastTrack() {
     const title = track?.name;
 
     if (!artist || !title) {
-      return { last_track };
+      return lastTrack;
     }
 
-    last_track = `${artist} - ${title}`;
+    lastTrack = `${artist} - ${title}`;
   } catch (err) {
-    last_track = "Error! Reloading should help";
+    lastTrack = "Error! Reloading should help";
   }
 
-  return last_track;
+  return lastTrack;
 }
 
 export default {
@@ -53,7 +53,7 @@ export default {
 
     try {
       let content = await fs.readFile(filePath, fileEncoding);
-      content = content.replace("{last_track}", await getLastTrack());
+      content = content.replace("{lastTrack}", await getLastTrack());
       return new Response(content, {
         status: 200,
         headers: { "Content-Type": "text/html" },
