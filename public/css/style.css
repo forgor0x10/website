@@ -1,6 +1,49 @@
 :root {
-  --text: #000000;
-  --base: #808080;
+  --text: #ffffff;
+  --subtext0: #a0a0a0;
+  --subtext1: #606060;
+  --base: #000000;
+}
+
+@font-face {
+  font-family: "DOS/V re. JPN24";
+  src: url("/woff/Web437_DOS-V_re_JPN24.woff") format("woff");
+}
+
+@keyframes section-idle {
+  0% {
+    opacity: 0;
+    transform: scale(90%);
+  }
+
+  100% {
+    opacity: 100%;
+    transform: scale(100%);
+  }
+}
+
+@keyframes a-idle {
+  0% {
+    color: var(--text);
+  }
+
+  100% {
+    color: var(--subtext1);
+  }
+}
+
+@keyframes a-hover {
+  0% {
+    color: var(--text);
+  }
+
+  50% {
+    color: var(--subtext0);
+  }
+
+  100% {
+    color: var(--text);
+  }
 }
 
 * {
@@ -17,24 +60,29 @@ body {
 body {
   color: var(--text);
   background: var(--base);
-  font-family: "Patrick Hand", cursive;
+  font-family: "DOS/V re. JPN24", monospace;
+}
+
+p.bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  text-align: center;
+}
+
+p.color-subtext1 {
+  color: var(--subtext1);
 }
 
 a {
-  color: var(--text);
-  background: linear-gradient(var(--text), var(--text));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 100% 2px;
   text-decoration: none;
-  transition: 250ms ease;
-  padding-inline: 0.25rem;
+  animation: a-idle 1s ease forwards;
 }
 
 a:hover {
-  color: var(--base);
-  background-size: 100% 100%;
-  cursor: pointer;
+  animation: a-hover 1s ease infinite;
 }
 
 main {
@@ -50,24 +98,20 @@ main {
 
 section {
   width: 100%;
-  max-width: 60rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   border: 2px solid var(--text);
-  text-align: center;
+  border-radius: 1rem;
   padding: 1rem;
+  animation: section-idle 1s ease forwards;
 }
 
-section.flowers {
-  position: relative;
+section.size-fit {
+  max-width: fit-content;
 }
 
-section.flowers::before {
-  --size: 6rem;
-  position: absolute;
-  content: "";
-  top: calc(var(--size) * -1 + 4px);
-  right: 10%;
-  width: var(--size);
-  height: var(--size);
-  background: url("/img/flowers.png") center / contain;
-  filter: brightness(50%);
+section.no-frame {
+  background: none;
+  border: none;
 }
