@@ -1,49 +1,7 @@
 :root {
   --text: #ffffff;
-  --subtext0: #a0a0a0;
   --subtext1: #606060;
   --base: #000000;
-}
-
-@font-face {
-  font-family: "DOS/V re. JPN24";
-  src: url("/woff/Web437_DOS-V_re_JPN24.woff") format("woff");
-}
-
-@keyframes section-idle {
-  0% {
-    opacity: 0;
-    transform: scale(90%);
-  }
-
-  100% {
-    opacity: 100%;
-    transform: scale(100%);
-  }
-}
-
-@keyframes a-idle {
-  0% {
-    color: var(--text);
-  }
-
-  100% {
-    color: var(--subtext1);
-  }
-}
-
-@keyframes a-hover {
-  0% {
-    color: var(--text);
-  }
-
-  50% {
-    color: var(--subtext0);
-  }
-
-  100% {
-    color: var(--text);
-  }
 }
 
 * {
@@ -60,58 +18,78 @@ body {
 body {
   color: var(--text);
   background: var(--base);
-  font-family: "DOS/V re. JPN24", monospace;
-}
-
-p.bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem;
-  text-align: center;
-}
-
-p.color-subtext1 {
-  color: var(--subtext1);
-}
-
-a {
-  text-decoration: none;
-  animation: a-idle 1s ease forwards;
-}
-
-a:hover {
-  animation: a-hover 1s ease infinite;
-}
-
-main {
-  width: 100%;
-  height: 100%;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.125rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
 }
 
-section {
+a {
+  color: var(--text);
+  background: linear-gradient(var(--text), var(--text)) no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  text-decoration: none;
+  transition: all 0.25s ease-in-out;
+}
+
+a:hover {
+  color: var(--base);
+  background-size: 100% 100%;
+}
+
+a.no-underline {
+  background: none;
+}
+
+main {
+  position: relative;
   width: 100%;
+  height: 100%;
+  max-width: 60rem;
+  max-height: 20rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
   border: 2px solid var(--text);
   border-radius: 1rem;
-  padding: 1rem;
-  animation: section-idle 1s ease forwards;
 }
 
-section.size-fit {
-  max-width: fit-content;
+main > section {
+  flex: 1;
+  padding: 2rem;
 }
 
-section.no-frame {
-  background: none;
-  border: none;
+main > section.split {
+  border-right: 2px var(--subtext1) solid;
+}
+
+main .title {
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  transform: translateY(-50%);
+  background: var(--base);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+img.profile {
+  border: 2px solid var(--text);
+  height: 3rem;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  main > section.split {
+    border-right: none;
+    border-bottom: 2px var(--subtext1) solid;
+  }
 }
