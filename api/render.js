@@ -16,7 +16,7 @@ async function getLastTracks() {
       method: "user.getrecenttracks",
       api_key: process.env.LASTFM_API_KEY,
       format: "json",
-      limit: 5,
+      limit: 64,
       user: "forgorOx1O",
     };
 

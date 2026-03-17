@@ -1,7 +1,35 @@
 :root {
-  --text: #ffffff;
-  --subtext1: #606060;
-  --base: #000000;
+  --rosewater: #f5e0dc;
+  --flamingo: #f2cdcd;
+  --pink: #f5c2e7;
+  --mauve: #cba6f7;
+  --red: #f38ba8;
+  --maroon: #eba0ac;
+  --peach: #fab387;
+  --yellow: #f9e2af;
+  --green: #a6e3a1;
+  --teal: #94e2d5;
+  --sky: #89dceb;
+  --sapphire: #74c7ec;
+  --blue: #89b4fa;
+  --lavender: #b4befe;
+  --text: #cdd6f4;
+  --subtext1: #bac2de;
+  --subtext0: #a6adc8;
+  --overlay2: #9399b2;
+  --overlay1: #7f849c;
+  --overlay0: #6c7086;
+  --surface2: #585b70;
+  --surface1: #45475a;
+  --surface0: #313244;
+  --base: #1e1e2e;
+  --mantle: #181825;
+  --crust: #11111b;
+}
+
+@font-face {
+  font-family: "JetBrains Mono NF";
+  src: url("/ttf/JetBrainsMonoNerdFont-Regular.ttf") format("truetype");
 }
 
 * {
@@ -17,14 +45,9 @@ body {
 
 body {
   color: var(--text);
-  background: var(--base);
-  font-family: "DM Sans", sans-serif;
+  background: var(--mantle);
+  font-family: "JetBrains Mono NF", monospace;
   font-size: 1.125rem;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 a {
@@ -32,8 +55,29 @@ a {
   background: linear-gradient(var(--text), var(--text)) no-repeat;
   background-position: 0 100%;
   background-size: 100% 1px;
+  padding: 0 1rem;
   text-decoration: none;
   transition: all 0.25s ease-in-out;
+}
+
+a.red {
+  color: var(--red);
+  background-image: linear-gradient(var(--red), var(--red));
+}
+
+a.yellow {
+  color: var(--yellow);
+  background-image: linear-gradient(var(--yellow), var(--yellow));
+}
+
+a.green {
+  color: var(--green);
+  background-image: linear-gradient(var(--green), var(--green));
+}
+
+a.blue {
+  color: var(--blue);
+  background-image: linear-gradient(var(--blue), var(--blue));
 }
 
 a:hover {
@@ -41,55 +85,106 @@ a:hover {
   background-size: 100% 100%;
 }
 
-a.no-underline {
-  background: none;
-}
-
 main {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  max-width: 60rem;
-  max-height: 20rem;
+  min-width: 100%;
+  min-height: 100%;
   display: flex;
-  border: 2px solid var(--text);
-  border-radius: 1rem;
-}
-
-main > section {
-  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
   padding: 2rem;
 }
 
-main > section.split {
-  border-right: 2px var(--subtext1) solid;
+section {
+  position: relative;
+  width: 100%;
+  max-width: 60rem;
+  display: flex;
+  border: 2px solid var(--surface0);
+  padding: 1rem;
+  margin: 1.5rem 1rem;
 }
 
-main .title {
+section::before {
+  content: "";
   position: absolute;
-  top: 0;
-  left: 2rem;
-  transform: translateY(-50%);
+  inset: -1.5rem -1rem;
   background: var(--base);
+  z-index: -1;
+}
+
+section.title {
+  border: none;
+  margin: 0;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
-  padding: 0 1rem;
+}
+
+section.title::before {
+  background: none;
+}
+
+section.links {
+  display: flex;
+  justify-content: center;
+}
+
+section.links > div:first-child {
+  display: flex;
+  gap: 1rem;
 }
 
 img.profile {
   border: 2px solid var(--text);
-  height: 3rem;
+  height: 4rem;
   border-radius: 50%;
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  background: var(--base);
+}
+
+footer .primary,
+footer .secondary {
+  padding: 0 1rem;
+}
+
+footer .primary {
+  color: var(--base);
+  background: var(--mauve);
+}
+
+footer .secondary {
+  color: var(--mauve);
+  background: var(--surface0);
+}
+
+p.background-tracks {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  color: var(--surface0);
+  z-index: -1;
+}
+
 @media (max-width: 768px) {
-  main {
+  section.links > div:first-child {
     flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
   }
 
-  main > section.split {
-    border-right: none;
-    border-bottom: 2px var(--subtext1) solid;
+  footer > *:nth-child(2) {
+    display: none;
   }
 }
