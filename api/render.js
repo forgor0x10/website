@@ -5,9 +5,6 @@ import { fileURLToPath } from "url";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-const pagesDir = path.join(dirname, "../pages");
-const fileEncoding = "utf-8";
-
 async function getLastTracks() {
   let lastTracks;
 
@@ -31,16 +28,18 @@ async function getLastTracks() {
 
     const json = await response.json();
     const tracks = json?.recenttracks?.track;
+    let track_i = 0;
 
     lastTracks = tracks
       .map((track) => {
-        const artist = track?.artist?.["#text"];
-        const title = track?.name;
-        return `${artist} - ${title}`.toLowerCase();
+        const title = track?.name.toLowerCase();
+        const number = track_i.toString().padStart(4, " ");
+        track_i++;
+        return `${number} ${title}`;
       })
       .join("<br />");
   } catch (err) {
-    lastTracks = "Error. Reloading should help";
+    lastTracks = "Error! Reloading should help";
   }
 
   return lastTracks;
@@ -48,20 +47,24 @@ async function getLastTracks() {
 
 export default {
   async fetch() {
-    const filePath = path.join(pagesDir, "index.html");
-
     try {
-      let content = await fs.readFile(filePath, fileEncoding);
+      let content = await fs.readFile(
+        path.join(dirname, "../pages/index.html"),
+        "utf-8",
+      );
       content = content.replaceAll("{lastTracks}", await getLastTracks());
       return new Response(content, {
         status: 200,
         headers: { "Content-Type": "text/html" },
       });
     } catch {
-      return new Response("<h1>404 Not Found</h1>", {
-        status: 404,
-        headers: { "Content-Type": "text/html" },
-      });
+      return new Response(
+        "<h1>Error!</h1><p>An unexpected error occured rendering the page</p>",
+        {
+          status: 500,
+          headers: { "Content-Type": "text/html" },
+        },
+      );
     }
   },
 };

@@ -3,8 +3,8 @@
   "trailingSlash": true,
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/api/render?page=$1"
+      "source": "/",
+      "destination": "/api/render"
     }
   ]
 }
