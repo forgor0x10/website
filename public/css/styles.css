@@ -66,7 +66,7 @@ div.center-container {
 main {
   position: relative;
   width: fit-content;
-  min-width: 24rem;
+  min-width: 16rem;
   max-width: 32rem;
   display: flex;
   flex-direction: column;
