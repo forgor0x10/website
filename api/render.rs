@@ -26,7 +26,7 @@ async fn handler(req: Request) -> Result<Response<ResponseBody>, Error> {
     let page_path = format!("pages/{}.html", page);
     let page_content = match fs::read_to_string(&page_path) {
         Ok(content) => content,
-        Err(_) => match fs::read_to_string("api/pages/404.html") {
+        Err(_) => match fs::read_to_string("pages/404.html") {
             Ok(content) => content,
             Err(_) => String::from("<p>404</p>"),
         },
