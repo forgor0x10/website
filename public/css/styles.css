@@ -1,35 +1,25 @@
 :root {
-  --rosewater: #f5e0dc;
-  --flamingo: #f2cdcd;
-  --pink: #f5c2e7;
-  --mauve: #cba6f7;
-  --red: #f38ba8;
-  --maroon: #eba0ac;
-  --peach: #fab387;
-  --yellow: #f9e2af;
-  --green: #a6e3a1;
-  --teal: #94e2d5;
-  --sky: #89dceb;
-  --sapphire: #74c7ec;
-  --blue: #89b4fa;
-  --lavender: #b4befe;
-  --text: #cdd6f4;
-  --subtext1: #bac2de;
-  --subtext0: #a6adc8;
-  --overlay2: #9399b2;
-  --overlay1: #7f849c;
-  --overlay0: #6c7086;
-  --surface2: #585b70;
-  --surface1: #45475a;
-  --surface0: #313244;
-  --base: #1e1e2e;
-  --mantle: #181825;
-  --crust: #11111b;
+  --vga-black: #000000;
+  --vga-blue: #0000aa;
+  --vga-green: #00aa00;
+  --vga-cyan: #00aaaa;
+  --vga-red: #aa0000;
+  --vga-magenta: #aa00aa;
+  --vga-brown: #aa5500;
+  --vga-light-gray: #aaaaaa;
+  --vga-dark-gray: #555555;
+  --vga-light-blue: #5555ff;
+  --vga-light-green: #55ff55;
+  --vga-light-cyan: #55ffff;
+  --vga-light-red: #ff5555;
+  --vga-light-magenta: #ff55ff;
+  --vga-yellow: #ffff55;
+  --vga-white: #ffffff;
 }
 
 @font-face {
-  font-family: "JetBrains Mono NF";
-  src: url("/fonts/JetBrainsMonoNerdFont-Regular.ttf") format("truetype");
+  font-family: "IBM VGA 8x16";
+  src: url("/fonts/Web437_IBM_VGA_8x16.woff") format("woff");
 }
 
 * {
@@ -44,148 +34,94 @@ body {
 }
 
 body {
-  color: var(--text);
-  background: var(--mantle);
-  font-family: "JetBrains Mono NF", monospace;
-  font-size: 1.125rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--vga-light-gray);
+  background: var(--vga-black);
+  font-family: "IBM VGA 8x16", monospace;
 }
 
 a {
-  color: var(--text);
-  background: linear-gradient(var(--text), var(--text)) no-repeat;
-  background-position: 0 100%;
-  background-size: 100% 1px;
-  padding: 0 1rem;
+  color: var(--vga-light-cyan);
   text-decoration: none;
-  transition: all 0.25s ease-in-out;
-}
-
-a.red {
-  color: var(--red);
-  background-image: linear-gradient(var(--red), var(--red));
-}
-
-a.yellow {
-  color: var(--yellow);
-  background-image: linear-gradient(var(--yellow), var(--yellow));
-}
-
-a.green {
-  color: var(--green);
-  background-image: linear-gradient(var(--green), var(--green));
-}
-
-a.blue {
-  color: var(--blue);
-  background-image: linear-gradient(var(--blue), var(--blue));
 }
 
 a:hover {
-  color: var(--base);
-  background-size: 100% 100%;
+  color: var(--vga-yellow);
+}
+
+hr {
+  width: 100%;
+  border: none;
+  height: 2px;
+  background: var(--vga-light-gray);
+}
+
+div.center-container {
+  display: flex;
+  justify-content: center;
 }
 
 main {
-  min-width: 100%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem;
-}
-
-section {
   position: relative;
-  width: 100%;
-  max-width: 60rem;
-  display: flex;
-  border: 2px solid var(--surface0);
-  padding: 1rem;
-  margin: 1.5rem 1rem;
-}
-
-section::before {
-  content: "";
-  position: absolute;
-  inset: -1.5rem -1rem;
-  background: var(--base);
-  z-index: -1;
-}
-
-section.title {
-  border: none;
-  margin: 0;
+  width: fit-content;
+  min-width: 24rem;
+  max-width: 32rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 1rem;
+  padding: 0.75rem 0.5rem;
+  border: 2px solid var(--vga-light-gray);
 }
 
-section.title::before {
-  background: none;
+main.index {
+  max-width: 16rem;
+  border: none;
+  text-align: center;
 }
 
-section.links {
-  display: flex;
-  justify-content: center;
+main.index a {
+  display: inline-block;
+  width: 100%;
+  color: var(--vga-light-gray);
+  background: var(--vga-black);
 }
 
-section.links > div:first-child {
-  display: flex;
-  gap: 1rem;
-}
-
-img.profile {
-  border: 2px solid var(--text);
-  height: 8rem;
-  border-radius: 50%;
+main.index a:hover {
+  color: var(--vga-black);
+  background: var(--vga-light-gray);
 }
 
 footer {
   position: fixed;
   bottom: 0;
   left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  background: var(--base);
+  width: 100%;
 }
 
-footer .primary,
-footer .secondary {
-  padding: 0 1rem;
+@keyframes load-screen-animation {
+  0% {
+    top: 0;
+  }
+
+  100% {
+    top: 100%;
+  }
 }
 
-footer .primary {
-  color: var(--base);
-  background: var(--mauve);
-}
-
-footer .secondary {
-  color: var(--mauve);
-  background: var(--surface0);
-}
-
-p.background-tracks {
-  position: absolute;
+div.load-screen {
+  position: fixed;
   inset: 0;
-  overflow: hidden;
-  color: var(--surface0);
-  white-space: pre-wrap;
-  z-index: -1;
+  top: 100%;
+  background: var(--vga-black);
+  animation: load-screen-animation 250ms linear;
 }
 
-@media (max-width: 768px) {
-  section.links > div:first-child {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-  }
+.text-center {
+  text-align: center;
+}
 
-  footer > *:nth-child(2) {
-    display: none;
-  }
+.text-red {
+  color: var(--vga-red);
 }
