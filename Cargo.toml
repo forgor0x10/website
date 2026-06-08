@@ -1,0 +1,12 @@
+[package]
+name = "website"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+tokio = { version = "1.52.3", features = ["full"] }
+vercel_runtime = "2.2.0"
+
+[[bin]]
+name = "render"
+path = "api/render.rs"
