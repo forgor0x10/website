@@ -1,4 +1,2 @@
-pub mod dev;
+pub mod err_404;
 pub mod index;
-pub mod not_found;
-pub mod social;

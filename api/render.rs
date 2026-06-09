@@ -1,6 +1,6 @@
 use vercel_runtime::{Error, Request, Response, ResponseBody, run, service_fn};
 
-use website::app;
+use website::app::{self, pages};
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
@@ -24,14 +24,11 @@ async fn handler(req: Request) -> Result<Response<ResponseBody>, Error> {
     };
 
     let page = match page_name {
-        "index" => app::pages::index::page(),
-        "social" => app::pages::social::page(),
-        "dev" => app::pages::dev::page(),
-        _ => app::pages::not_found::page(),
-    }
-    .into_string();
+        "index" => pages::index::page(),
+        _ => pages::err_404::page(),
+    };
 
-    let layout = app::layout::page(&page, url_pathname);
+    let layout = app::layout::page(&(page.into_string()), url_pathname);
     let html = layout.into_string();
 
     Ok(Response::builder()

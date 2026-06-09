@@ -1,25 +1,30 @@
 :root {
-  --vga-black: #000000;
-  --vga-blue: #0000aa;
-  --vga-green: #00aa00;
-  --vga-cyan: #00aaaa;
-  --vga-red: #aa0000;
-  --vga-magenta: #aa00aa;
-  --vga-brown: #aa5500;
-  --vga-light-gray: #aaaaaa;
-  --vga-dark-gray: #555555;
-  --vga-light-blue: #5555ff;
-  --vga-light-green: #55ff55;
-  --vga-light-cyan: #55ffff;
-  --vga-light-red: #ff5555;
-  --vga-light-magenta: #ff55ff;
-  --vga-yellow: #ffff55;
-  --vga-white: #ffffff;
-}
-
-@font-face {
-  font-family: "IBM VGA 8x16";
-  src: url("/fonts/Web437_IBM_VGA_8x16.woff") format("woff");
+  --ctp-rosewater: #f5e0dc;
+  --ctp-flamingo: #f2cdcd;
+  --ctp-pink: #f5c2e7;
+  --ctp-mauve: #cba6f7;
+  --ctp-red: #f38ba8;
+  --ctp-maroon: #eba0ac;
+  --ctp-peach: #fab387;
+  --ctp-yellow: #f9e2af;
+  --ctp-green: #a6e3a1;
+  --ctp-teal: #94e2d5;
+  --ctp-sky: #89dceb;
+  --ctp-sapphire: #74c7ec;
+  --ctp-blue: #89b4fa;
+  --ctp-lavender: #b4befe;
+  --ctp-text: #cdd6f4;
+  --ctp-subtext1: #bac2de;
+  --ctp-subtext0: #a6adc8;
+  --ctp-overlay2: #9399b2;
+  --ctp-overlay1: #7f849c;
+  --ctp-overlay0: #6c7086;
+  --ctp-surface2: #585b70;
+  --ctp-surface1: #45475a;
+  --ctp-surface0: #313244;
+  --ctp-base: #1e1e2e;
+  --ctp-mantle: #181825;
+  --ctp-crust: #11111b;
 }
 
 * {
@@ -28,100 +33,186 @@
   box-sizing: border-box;
 }
 
-html,
 body {
-  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--ctp-text);
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
 }
 
-body {
+.main-container {
+  flex: 1;
   display: flex;
-  justify-content: center;
+}
+
+main,
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+  background: var(--ctp-base);
+}
+
+header,
+footer {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--ctp-mantle);
+  display: flex;
+}
+
+header {
+  justify-content: space-between;
   align-items: center;
-  color: var(--vga-light-gray);
-  background: var(--vga-black);
-  font-family: "IBM VGA 8x16", monospace;
+  position: sticky;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid var(--ctp-surface0);
+}
+
+footer {
+  flex-direction: column;
+  gap: 1rem;
+  border-top: 1px solid var(--ctp-surface0);
+}
+
+footer > div {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+
+footer > p {
+  text-align: center;
+}
+
+header > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+header .logo,
+header .sidebar-button {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--ctp-surface0);
+  border-radius: 0.75rem;
+}
+
+header .sidebar-button {
+  color: var(--ctp-surface0);
+  background: var(--ctp-mantle);
+  transition: background 100ms ease;
+}
+
+header .sidebar-button:hover {
+  background: var(--ctp-base);
+}
+
+header .sidebar-button:active {
+  background: var(--ctp-mantle);
+}
+
+.sidebar {
+  width: calc(100% / 3);
+  min-height: 100%;
+  background-color: var(--ctp-mantle);
+  border-right: 1px solid var(--ctp-surface0);
+  overflow: hidden;
+  transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar.hidden {
+  width: 0;
+}
+
+.sidebar .content-container {
+  padding: 1rem;
 }
 
 a {
-  color: var(--vga-light-cyan);
   text-decoration: none;
+  color: var(--ctp-blue);
+  background: linear-gradient(var(--ctp-blue), var(--ctp-blue)) no-repeat;
+  background-position: 0% 100%;
+  background-size: 100% 1px;
+  transition:
+    color 250ms ease,
+    background-size 250ms ease;
 }
 
 a:hover {
-  color: var(--vga-yellow);
+  color: var(--ctp-base);
+  background-size: 100% 100%;
+}
+
+a.text {
+  color: var(--ctp-overlay2);
+  background: none;
+  transition: color 100ms ease;
+}
+
+a.text:hover {
+  color: var(--ctp-text);
+}
+
+a.static,
+a.static:hover {
+  color: currentColor;
+  background: none;
+}
+
+a.button {
+  background: none;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--ctp-surface0);
+  border-radius: 1rem;
+  color: var(--ctp-text);
+  background: var(--ctp-base);
+  transition: background 100ms ease;
+}
+
+a.button:hover {
+  border-color: var(--ctp-surface1);
+  background: var(--ctp-surface0);
+}
+
+ul {
+  list-style: none;
+}
+
+ul li {
+  margin-left: 2rem;
 }
 
 hr {
   width: 100%;
   border: none;
-  height: 2px;
-  background: var(--vga-light-gray);
+  height: 1px;
+  background: var(--ctp-text);
 }
 
-div.center-container {
-  display: flex;
-  justify-content: center;
-}
-
-main {
-  position: relative;
-  width: fit-content;
-  min-width: 16rem;
-  max-width: 32rem;
+.v-container {
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
-  padding: 0.75rem 0.5rem;
-  border: 2px solid var(--vga-light-gray);
 }
 
-main.index {
-  max-width: 16rem;
-  border: none;
-  text-align: center;
-}
-
-main.index a {
-  display: inline-block;
-  width: 100%;
-  color: var(--vga-light-gray);
-  background: var(--vga-black);
-}
-
-main.index a:hover {
-  color: var(--vga-black);
-  background: var(--vga-light-gray);
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-@keyframes load-screen-animation {
-  0% {
-    top: 0;
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    position: fixed;
   }
-
-  100% {
-    top: 100%;
-  }
-}
-
-div.load-screen {
-  position: fixed;
-  inset: 0;
-  top: 100%;
-  background: var(--vga-black);
-  animation: load-screen-animation 250ms linear;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-red {
-  color: var(--vga-red);
 }
